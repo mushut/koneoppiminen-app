@@ -1,10 +1,12 @@
 import card
+import random
 
 
 class Deck:
     def __init__(self, id):
         self.id = id
         self.cards = []
+        cards = []
 
         for suite_number in range(4):
             if suite_number == 0:
@@ -18,7 +20,18 @@ class Deck:
 
             for value in range(1,14):
                 new_card = card.Card(suite, value)
-                self.cards.append(new_card)
+                cards.append(new_card)
+
+        rand_indexes = []
+        number = 0
+        for i in range(52):
+            rand_indexes.append(number)
+            number += 1
+
+        for index in range(52):
+            rand_index = random.randint(0,len(rand_indexes)-1)
+            rand_indexes.remove(rand_indexes[rand_index])
+            self.cards.append(cards[rand_index])
 
 
     # For printing the deck
